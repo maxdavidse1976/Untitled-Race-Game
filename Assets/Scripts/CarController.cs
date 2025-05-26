@@ -31,7 +31,18 @@ public class CarController : MonoBehaviour
     float _moveInput;
     float _turnInput;
 
+    [SerializeField] WheelCollider[] _wheelColliders;
 
+    void Awake()
+    {
+        if (_wheelColliders.Length > 0)
+        {
+            foreach (WheelCollider collider in _wheelColliders)
+            {
+                collider.motorTorque = .1f;
+            }
+        }
+    }
     void Start()
     {
         _rigidbody = GetComponent<Rigidbody>();
